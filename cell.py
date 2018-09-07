@@ -1,12 +1,13 @@
 class Cell:
 	"""
 	Cell class
+	each cell has 
 	"""
 	def __init__(self,pos_x,pos_y):
-
 		self.active=True
-		#has mine
+		#initial value
 		self.value="-"
+		#has mine
 		self.has_mine=False
 		#location
 		self.pos_x=pos_x
