@@ -6,7 +6,6 @@ class Cell:
 	def __init__(self,pos_x,pos_y):
 		#initial state
 		self.state=False
-
 		#initial value
 		self.value="-"
 
@@ -14,6 +13,8 @@ class Cell:
 		self.has_mine=False
 		#has mark?
 		self.mark=False
+		#neighbor_mines
+		self.neighbor_mines=0
 
 		#location
 		self.pos_x=pos_x
@@ -27,7 +28,8 @@ class Cell:
 
 	def get_mark(self):
 		return self.mark
-
+	def get_neighbor_mines(self):
+		return self.neighbor_mines
 	def set_mark(self,mark):
 		self.mark=mark
 
@@ -52,7 +54,7 @@ class Cell:
 		else:
 			return "."	
 
-	def neighbor_mines(self,game):
+	def count_neighbor_mines(self,game):
 		if not self.has_mine:
 			neighbor_mines=0
 			for i in range(-1,2):

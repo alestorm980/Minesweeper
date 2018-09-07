@@ -23,7 +23,8 @@ class Board:
 		return self.board
 
 	def random_mines(self):	
-		self.mines=[random.randint(1,self.height*self.width) for x in range(0,self.n_mines) ]
+		#self.mines=[random.randint(1,self.height*self.width) for x in range(0,self.n_mines) ]
+		self.mines=[24,52,54]
 		for mine in self.mines:
 			i=(mine-1)/self.width
 			j=(mine-1)%self.width
@@ -41,15 +42,26 @@ class Board:
 	def count_neighbors(self):
 		for x in range(0,self.height):
 			for y in range(0,self.width):			
-				self.board[x][y].neighbor_mines(self)
-
-	def uncover_cell(self,i,j):
-		if(i>=0 and j>=0 and i<self.height and j<self.width):
-			if not self.board[i][j].get_state():
-				self.board[i][j].set_state(True)
-				self.print_board()
+				self.board[x][y].count_neighbor_mines(self)
+		
+	def init_uncover_cell(self,x,y):
+		if(x>=0 and y>=0 and x<self.height and y<self.width):
+			self.uncover_cell(x,y)
+			self.print_board()
 		else:
-			print "Position not valid"
+			print "Position not valid"			
+
+	def uncover_cell(self,x,y):
+		if(x>=0 and y>=0 and x<self.height and y<self.width):
+			if not self.board[x][y].get_state():
+				self.board[x][y].set_state(True)
+				if(self.board[x][y].get_neighbor_mines()==0):
+
+					for i in range(-1,2):
+						for j in range(-1,2):
+							if x+i>=0 and y+j>=0 and x+i<self.height and y+j<self.width:
+								self.uncover_cell(x+i,y+j)			
+
 
 	def mark_cell(self,i,j):
 		if(i>=0 and j>=0 and i<self.height and j<self.width):
@@ -58,15 +70,12 @@ class Board:
 
 				if not self.board[i][j].get_mark():
 					self.board[i][j].set_mark(True)
-					self.print_board()
 					print "The cell ("+str(i)+","+str(j)+") has been marked"
 				else:
 					self.board[i][j].set_mark(False)
-					self.print_board()
 					print "The cell ("+str(i)+","+str(j)+") has been unmarked"
 		else:
 			print "Position not valid"			
-
 
 	def print_board(self):
 		print ""
@@ -79,8 +88,7 @@ class Board:
 		print "--------------------------"	
 		print ""		
 			
-a=Board(6,10,2)
+a=Board(6,10,0)
 a.print_board()
-
-a.mark_cell(2,3)
-a.mark_cell(2,4)
+a.uncover_cell(0,3)
+a.print_board()
