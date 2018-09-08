@@ -33,6 +33,14 @@ class Board:
 	def get_board(self):
 		return self.board
 
+	# for testing 
+	def fixed_mines(self,mines):
+		self.mines=	mines
+		for mine in self.mines:
+			i=(mine-1)/self.width
+			j=(mine-1)%self.width
+			self.board[i][j].set_has_mine(True)
+
 	def random_mines(self):	
 		# create n_mines random mines in a h*w board
 		self.mines=[random.randint(1,self.height*self.width) for x in range(0,self.n_mines) ]

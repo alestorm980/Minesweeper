@@ -15,8 +15,10 @@ $ python game.py
 
 ## Running the tests
 
-To run the automated test you need to run the following command
+To run the automated test you need to run the following commands:
 
 ```
-$ python 
+$ python test_board.py
+$ python test_cell.py
+$ python -m unittest test_board test_cell
 ```
