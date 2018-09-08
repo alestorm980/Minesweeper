@@ -1,7 +1,8 @@
 class Cell:
 	"""
 	Cell class
-	each cell has 
+		Objects cells in order to create the board
+		Method that each cell use independent
 	"""
 	def __init__(self,pos_x,pos_y):
 		#initial state
