@@ -70,7 +70,7 @@ class Board:
 	# init function for uncover cell		
 	def init_uncover_cell(self,x,y):
 		#validate index
-		if(x>=0 and y>=0 and x<self.height and y<self.width):
+		if(x>=0 and y>=0 and x<self.height and y<self.width) and not self.board[x][y].get_state():
 			if(self.is_a_loser(x,y)):
 				self.loser()
 			else:				
