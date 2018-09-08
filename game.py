@@ -1,5 +1,7 @@
 from board import Board
-
+import sys
+# change recursion limit
+sys.setrecursionlimit(100000)
 class Game:
 	"""
 		Class Game

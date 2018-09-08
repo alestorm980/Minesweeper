@@ -160,19 +160,18 @@ class Board:
 	#print board method
 	def print_board(self):
 		print ""
-		print "Board                                  Table of position"
+		print "Board"
 		print ""
 		i=0
 		j=0
 		for x in range(0,self.height):
 			line=""
-			line_aux=""
+			#line_aux=""
 			j=0
 			for y in range(0,self.width):
 				line+=str(self.board[x][y])+" "
-				line_aux+="("+str(i)+","+str(j)+") "
 				j+=1
-			print line+"         "+line_aux
+			print line
 			i+=1			
 		print ""
 		print "--------------------------"	
